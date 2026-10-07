@@ -1,0 +1,30 @@
+[
+  {
+    "id": "gep_pattern-1-v0-2-0",
+    "type": "ogc_api_process",
+    "description": "Burned Area Severity (BAS) output regression benchmark. Supply reference outputs and confirm the process ID on this endpoint before enabling.",
+    "endpoint": "https://processing.geohazards-tep.eu/7465727261647565",
+    "application": "pattern-1-v0-2-0",
+    "auth": {
+      "url": "https://iam.terradue.com",
+      "realm": "master"
+    },
+    "parameters": {
+      "aoi": "-118.985,38.432,-118.183,38.938",
+      "epsg": "EPSG:4326",
+      "bands": [
+        "green",
+        "nir"
+      ],
+      "item": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_10TFK_20210713_0_L2A"
+    },
+    "reference_data": {
+      "REPLACE_WITH_OUTPUT_FILENAME.tif": "REPLACE_WITH_REFERENCE_OUTPUT_URL"
+    },
+    "reference_options": {
+      "rtol": 0.001,
+      "atol": 1,
+      "pixel_tolerance": 1
+    }
+  }
+]
