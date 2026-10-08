@@ -38,6 +38,7 @@ jobs:
           APEX_ALGORITHMS_S3_SECRET_ACCESS_KEY: ${{ secrets.APEX_ALGORITHMS_S3_SECRET_ACCESS_KEY }}
           APEX_ALGORITHMS_S3_ENDPOINT_URL: ${{ secrets.APEX_ALGORITHMS_S3_ENDPOINT_URL || 'https://s3.waw3-1.cloudferro.com' }}
           APEX_ALGORITHMS_S3_DEFAULT_REGION: ${{ secrets.APEX_ALGORITHMS_S3_DEFAULT_REGION || 'waw3-1' }}
+          OGC_AUTH_TOKEN: ${{ secrets.OGC_AUTH_TOKEN }}
         run: |
           set -o pipefail
           cd qa/benchmarks
