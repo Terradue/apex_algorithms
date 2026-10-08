@@ -3,8 +3,8 @@
     "id": "gep_pattern-1-v0-2-0",
     "type": "ogc_api_process",
     "description": "Burned Area Severity (BAS) output regression benchmark. Supply reference outputs and confirm the process ID on this endpoint before enabling.",
-    "endpoint": "https://processing.geohazards-tep.eu/7465727261647565",
-    "application": "pattern-1-v0-2-0",
+    "endpoint": "https://processing.geohazards-tep.eu/6e6f723235313539",
+    "application": "burned-area-severity-v3-0-3",
     "properties": {
       "title": "APEx pattern-1 benchmark",
       "labels": {
@@ -19,13 +19,21 @@
       "realm": "master"
     },
     "parameters": {
-      "aoi": "-118.985,38.432,-118.183,38.938",
-      "epsg": "EPSG:4326",
-      "bands": [
-        "green",
-        "nir"
-      ],
-      "item": "https://earth-search.aws.element84.com/v0/collections/sentinel-s2-l2a-cogs/items/S2B_10TFK_20210713_0_L2A"
+      "pre_event": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=Name%20eq%20%27S2B_MSIL2A_20241108T101129_N0511_R022_T33TTG_20241108T124914.SAFE",
+      "post_event": "https://catalogue.dataspace.copernicus.eu/odata/v1/Products?$filter=Name%20eq%20%27S2B_MSIL2A_20241118T101219_N0511_R022_T33TTG_20241118T113501.SAFE",
+      "aoi": {
+        "type": "Polygon",
+        "bbox": [12.145, 42.033, 12.634, 42.298],
+        "coordinates": [
+          [
+            [12.145, 42.033],
+            [12.634, 42.033],
+            [12.634, 42.298],
+            [12.145, 42.298],
+            [12.145, 42.033]
+          ]
+        ]
+      }
     },
     "reference_data": {
       "REPLACE_WITH_OUTPUT_FILENAME.tif": "REPLACE_WITH_REFERENCE_OUTPUT_URL"
