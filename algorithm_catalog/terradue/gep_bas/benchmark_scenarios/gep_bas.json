@@ -5,6 +5,15 @@
     "description": "Burned Area Severity (BAS) output regression benchmark. Supply reference outputs and confirm the process ID on this endpoint before enabling.",
     "endpoint": "https://processing.geohazards-tep.eu/7465727261647565",
     "application": "pattern-1-v0-2-0",
+    "properties": {
+      "title": "APEx pattern-1 benchmark",
+      "labels": {
+        "project": "apex",
+        "purpose": "benchmark",
+        "algorithm": "gep-bas",
+        "scenario": "gep_pattern-1-v0-2-0"
+      }
+    },
     "auth": {
       "url": "https://iam.terradue.com",
       "realm": "master"

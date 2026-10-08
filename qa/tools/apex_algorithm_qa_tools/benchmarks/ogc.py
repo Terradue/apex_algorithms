@@ -114,7 +114,11 @@ def create_ogc_api_client(*, endpoint: str, namespace: str, user_token: str) -> 
 
 
 def create_ogc_job(*, scenario) -> dict:
-    return {"inputs": {key: value for key, value in scenario.parameters.items()}}
+    job = {"inputs": scenario.parameters}
+    # Properties are a Mate extension to the execute payload.
+    if urlparse(scenario.endpoint).hostname == "processing.geohazards-tep.eu" and scenario.properties:
+        job["properties"] = scenario.properties
+    return job
 
 
 def _get_job_headers(user_token: str) -> dict:
