@@ -35,7 +35,9 @@
         ]
       }
     },
-    "reference_data": {},
+    "reference_data": {
+      "item-collection.json": "https://results.geohazards-tep.eu/6e6f723235313539/collections/burned-area-severity-v3-0-4-rlvcp-oljqid/items"
+    },
     "reference_options": {
       "rtol": 0.001,
       "atol": 1,

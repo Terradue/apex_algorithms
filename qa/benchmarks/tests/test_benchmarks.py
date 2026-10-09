@@ -136,7 +136,7 @@ def test_run_benchmark(
     actual_s3_urls = {k: v for k, v in actual_s3_urls.items() if v is not None}
 
     with track_phase(phase="download-reference"):
-        reference_dir = download_reference_data(scenario=scenario, reference_dir=tmp_path / "reference")
+        reference_dir = runner.download_reference(scenario=scenario, reference_dir=tmp_path / "reference")
 
     if report_path is not None:
         report = json.loads(report_path.read_text())
@@ -169,14 +169,17 @@ def test_run_benchmark(
     with track_phase(phase="compare", describe_exception=analyse_results_comparison_exception):
         # Compare actual results with reference data
         try:
-            assert_job_results_allclose(
-                actual=actual_dir,
-                expected=reference_dir,
-                tmp_path=tmp_path,
-                rtol=scenario.reference_options.get("rtol", 1e-3),
-                atol=scenario.reference_options.get("atol", 1),
-                pixel_tolerance=scenario.reference_options.get("pixel_tolerance", 1),
-            )
+            if runner.can_check_job_results_validity:
+                runner.assert_job_results_validity(reference_dir, actual_dir)
+            else:
+                assert_job_results_allclose(
+                    actual=actual_dir,
+                    expected=reference_dir,
+                    tmp_path=tmp_path,
+                    rtol=scenario.reference_options.get("rtol", 1e-3),
+                    atol=scenario.reference_options.get("atol", 1),
+                    pixel_tolerance=scenario.reference_options.get("pixel_tolerance", 1),
+                )
         except AssertionError as e:
             msg = str(e)
             if scenario.reference_data:

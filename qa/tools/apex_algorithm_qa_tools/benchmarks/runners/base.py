@@ -5,7 +5,10 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 from typing import Any
 
-from apex_algorithm_qa_tools.scenarios import BenchmarkScenario
+from apex_algorithm_qa_tools.scenarios import (
+    BenchmarkScenario,
+    download_reference_data,
+)
 
 
 @dataclasses.dataclass
@@ -53,4 +56,16 @@ class BenchmarkRunner(ABC):
 
     @abstractmethod
     def download_actual(self, *, actual_dir: Path) -> list[Path]:
+        pass
+
+    @abstractmethod
+    def download_reference(self, scenario: BenchmarkScenario, reference_dir: Path) -> Path:
+        return self.download_reference(scenario, reference_dir)
+
+    @abstractmethod
+    def can_check_job_results_validity(self):
+        return False
+
+    @abstractmethod
+    def assert_job_results_validity(self, reference_dir: Path, actual_dir: Path):
         pass

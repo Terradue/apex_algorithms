@@ -64,7 +64,7 @@ def lint_ogc_fields(scenario: OGCAPIBenchmarkScenario):
     assert isinstance(scenario.parameters, dict)
 
 
-def download_reference_data(scenario: BenchmarkScenario, reference_dir: Path) -> Path:
+def download_reference_data(scenario: BenchmarkScenario, reference_dir: Path, headers: dict=None) -> Path:
     with TimingLogger(
         title=f"Downloading reference data for {scenario.id=} to {reference_dir=}",
         logger=_log.info,
@@ -84,7 +84,7 @@ def download_reference_data(scenario: BenchmarkScenario, reference_dir: Path) ->
                             f.write(src_file.read())
                 else:
                     # Handle HTTP(S) URLs
-                    resp = requests.get(source, stream=True)
+                    resp = requests.get(source, headers=headers, stream=True)
                     with path.open("wb") as f:
                         for chunk in resp.iter_content(chunk_size=128):
                             f.write(chunk)
