@@ -126,7 +126,7 @@ class OGCBenchmarkRunner(BenchmarkRunner):
 
         ref_features = ref_feature_collection_json.get("features")
         if not ref_features:
-            _log.debug(f"Reference file content: {json.dumps(ref_feature_collection_json)}")
+            _log.info(f"Reference file content: {json.dumps(ref_feature_collection_json)}")
             raise RuntimeError("No Feature (STAC Item) found in reference FeatureCollection.")
 
         act_features = None
